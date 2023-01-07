@@ -33,13 +33,13 @@ Reference_amount = 1
 Sample_amount = 1
 
 # prediction of deviation in heat capacity measurement
-error_pred = pc.dev_pred(Reference_amount,Sample_amount)
+error_pred = pc.prediction(Reference_amount,Sample_amount)
 
 # for help
-pc.dev_pred.help()
+pc.prediction.help()
 
 # for info of model
-pc.dev_pred.info()
+pc.prediction.info()
 ```
 
 The example output
