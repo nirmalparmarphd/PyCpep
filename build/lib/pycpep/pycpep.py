@@ -3,8 +3,10 @@ print('-'*70)
 import pandas as pd
 import numpy as np
 import pickle
+import tensorflow as tf
 from tensorflow.keras.models import load_model
 import pkg_resources
+import keras
 
 initial_info = '''
                   -------------------------------------------------------
@@ -19,9 +21,9 @@ class prediction():
     if 0 < Ref <= 1 and 0 < Sam <= 1:   
       self.Ref = Ref
       self.Sam = Sam
-      model_file = pkg_resources.resource_stream(__name__,'ann/micro_dsc_dl.h5') 
-      model = load_model(model_file)
       scaler_file = pkg_resources.resource_stream(__name__,'ann/scaler.pkl')
+      model_file = pkg_resources.resource_stream(__name__,'ann/micro_dsc_dl.hdf5') 
+      model = keras.models.load_model(model_file)
       with open(scaler_file, 'rb') as f:
         scaler = pickle.load(f)
       vol_rel = (self.Ref*self.Ref)/self.Sam
