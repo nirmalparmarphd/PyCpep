@@ -1,7 +1,7 @@
 # microDSC_error_prediction_ANN
 Prediction in the isobaric heat capacity measurement (at 298~K) deviation due to improper amount of the sample or/and calibration standard in Tian-Calvet microDSC
 
-> Estimated ANN Model prediction accuracy over the test data is '99.52[%]'
+> Estimated ANN Model prediction accuracy over the test data is '99.82[%]'
 
 # Requirements
 Dependent packages can be downloaded by following python command. Please ignore this step if you already satisfy this requirements.
