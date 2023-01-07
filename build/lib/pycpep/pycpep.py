@@ -5,13 +5,11 @@ import numpy as np
 import pickle
 from tensorflow.keras.models import load_model
 
-initial_info = '''
-                  -------------------------------------------------------
-                  #--> import pkg:  import pycpep as pc
+initial_info = '''#--> import pkg:  import pycpep as pc
                   #--> get info:    pc.prediction.info()
-                  #--> get help:    pc.prediction.help()
+                  #--> get  help:   pc.prediction.help()
                   more details: https://github.com/nirmalparmarphd/PyCpep
-                  -------------------------------------------------------'''
+'''
 print(initial_info)  
 class prediction():    
   def __init__(self,Ref,Sam):
@@ -63,9 +61,7 @@ class prediction():
 
         * This ANN model predicts the possible deviation that may arise in the heat capacity measurement experiment due to in appropriate combination of the sample and the reference material amount!
 
-        --> ANN Model accuracy on the test data is 99.82 [%] <--
-        
-        * more details: https://github.com/nirmalparmarphd/PyCpep'''
+        -->ANN Model accuracy on the test data is 99.82 [%]<--'''
       print(information)
 
   def help():
@@ -81,14 +77,14 @@ class prediction():
         ### MINIMUM WORKING EXAMPLE ###
 
         # import module
-        >>> import pycpep as pc
+        import pycpep as pc
 
         # defining values
-        >>> Reference_amount = 1
-        >>> Sample_amount = 1
+        Reference_amount = 1
+        Sample_amount = 1
 
         # prediction of deviation in heat capacity measurement
-        >>> error_pred = pc.prediction(Reference_amount,Sample_amount)
+        error_pred = pc.dev_pred(Reference_amount,Sample_amount)
             '''  
       print(help_info)
 
