@@ -1,14 +1,15 @@
-from setuptools import setup
+import setuptools
 
-setup(name='pycpep',
-        version='1.0.3',
+setuptools.setup(name='pycpep',
+        version='1.0.5',
+        license='MIT',
         url='https://github.com/nirmalparmarphd',
         description='Predicts deviation in the heat capacity measurement for microDSC Tian-Calvet', 
         author='Nirmal Parmar',
-        author_email='nirmalparmarphd@gmail.com', 
-        packages=['pycpep'],
+        author_email='nirmalparmarphd@gmail.com',
+        packages=setuptools.find_packages(),
         include_package_data=True,
-        package_data={'':['micro_dsc_dl.h5', 'scaler.pkl']},
+        package_data={'': ['ann/*.h5', 'ann/*.pkl']},
         install_requires=['scikit-learn','tensorflow','numpy'],
         zip_safe=False)
         

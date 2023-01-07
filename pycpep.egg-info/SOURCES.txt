@@ -1,12 +1,12 @@
 README.md
 setup.py
 pycpep/__init__.py
-pycpep/micro_dsc_dl.h5
 pycpep/pycpep.py
-pycpep/scaler.pkl
 pycpep.egg-info/PKG-INFO
 pycpep.egg-info/SOURCES.txt
 pycpep.egg-info/dependency_links.txt
 pycpep.egg-info/not-zip-safe
 pycpep.egg-info/requires.txt
 pycpep.egg-info/top_level.txt
+pycpep/ann/micro_dsc_dl.h5
+pycpep/ann/scaler.pkl

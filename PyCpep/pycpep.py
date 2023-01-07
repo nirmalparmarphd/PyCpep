@@ -4,6 +4,7 @@ import pandas as pd
 import numpy as np
 import pickle
 from tensorflow.keras.models import load_model
+import pkg_resources
 
 initial_info = '''
                   -------------------------------------------------------
@@ -18,8 +19,10 @@ class prediction():
     if 0 < Ref <= 1 and 0 < Sam <= 1:   
       self.Ref = Ref
       self.Sam = Sam
-      model = load_model('micro_dsc_dl.h5')
-      with open('scaler.pkl', 'rb') as f:
+      model_file = pkg_resources.resource_stream(__name__,'ann/micro_dsc_dl.h5') 
+      model = load_model(model_file)
+      scaler_file = pkg_resources.resource_stream(__name__,'ann/scaler.pkl')
+      with open(scaler_file, 'rb') as f:
         scaler = pickle.load(f)
       vol_rel = (self.Ref*self.Ref)/self.Sam
       data = [self.Ref, self.Sam, vol_rel]
