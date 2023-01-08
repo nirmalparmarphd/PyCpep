@@ -31,22 +31,27 @@ class pkg():
 
   def load():
     print('-'*70)    
-    url_pkg = 'https://github.com/nirmalparmarphd/PyCpep/blob/main/PyCpep'
-    Repo.clone_from(url_pkg, os.getcwd())
+    url_pkg = 'https://github.com/nirmalparmarphd/PyCpep'
+    cwd = os.getcwd()
+    directory = 'dir'
+    path = os.path.join(cwd, directory)
+    isExist = os.path.exists(path)
+    if not isExist:    
+      os.mkdir(path)
+      print("Directory '% s' created" % directory)
+    Repo.clone_from(url_pkg, 'dir')
     print('Downloaded PyCpep in current directory.')
 
-  def prediction(self,Ref,Sam):    
+  def prediction(Ref,Sam):    
     if 0 < Ref <= 1 and 0 < Sam <= 1:
-      self.Ref = Ref
-      self.Sam = Sam
       # loading scaler
-      with open('mdl/scaler.pkl' , 'rb') as f:
+      with open('pycpep/mdl/scaler.pkl', 'rb') as f:
         scaler = pickle.load(f)
       # loading ann model
-      model = keras.models.load_model('mdl/model.h5')
+      model = keras.models.load_model('pycpep/mdl/model.h5')
       # calculating vol-rel
-      vol_rel = (self.Ref*self.Ref)/self.Sam
-      data = [self.Ref, self.Sam, vol_rel]
+      vol_rel = (Ref*Ref)/Sam
+      data = [Ref, Sam, vol_rel]
       data = pd.DataFrame([data])
       # scaling data
       data_ = scaler.transform(data)

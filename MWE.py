@@ -1,7 +1,11 @@
 from pycpep import pycpep as pc
 
-pc.prediction.help()
+pc.pkg()
 
-pc.prediction.info()
+pc.pkg.load()
 
-pc.prediction(1,1)
+pc.pkg.info()
+
+pc.pkg.help()
+
+pc.pkg.prediction(1,1)
