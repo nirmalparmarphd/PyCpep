@@ -21,7 +21,9 @@ initial_info = '''
                   #--> use MWE.py to check minimum working example.
 
                   more details: https://github.com/nirmalparmarphd/PyCpep
-                  -------------------------------------------------------'''
+                  -------------------------------------------------------
+                  
+                  '''
 print(initial_info)
 
 class pkg():
@@ -77,6 +79,7 @@ class pkg():
               The combination of the sample and the reference amount is appropriate.
               NOTE:
               Consider 0.8~ml as standard amount to avoid any deviation in the measurement.''')
+        print('-'*70)
       else:
         print('Heat capacity measurement deviation prediction (%): ', pred_)
         print('''COMMENT(s): 
@@ -93,7 +96,8 @@ class pkg():
                 ## Two Third full cell:     0.66    [0.40 to 0.80 ml]
                 ## One half full cell:      0.5     [0.26 to 0.40 ml]
                 ## One third full cell:     0.33    [0.10 to 0.26 ml]
-            ''')    
+            ''')
+      print('-'*70)
 
   def info():
       information ='''
@@ -103,8 +107,11 @@ class pkg():
 
         --> ANN Model accuracy on the test data is 99.82 [%] <--
         
-        * more details: https://github.com/nirmalparmarphd/PyCpep'''
+        * more details: https://github.com/nirmalparmarphd/PyCpep
+        
+        '''
       print(information)
+      print('-'*70)
 
   def help():
       help_info = '''
@@ -128,6 +135,8 @@ class pkg():
         >>> pc.pkg.load()
 
         # change to 'dir_pycpep' to access MWE.py
+
             '''  
       print(help_info)
+      print('-'*70)
 
