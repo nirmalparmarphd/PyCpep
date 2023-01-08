@@ -6,8 +6,6 @@ import tensorflow as tf
 from tensorflow.keras.models import load_model
 import pkg_resources
 import keras
-import requests
-import wget
 from git.repo.base import Repo
 import os
 
@@ -33,13 +31,19 @@ class pkg():
     print('-'*70)    
     url_pkg = 'https://github.com/nirmalparmarphd/PyCpep'
     cwd = os.getcwd()
-    directory = 'dir'
+    directory = 'dir_pycpep'
     path = os.path.join(cwd, directory)
     isExist = os.path.exists(path)
     if not isExist:    
       os.mkdir(path)
       print("Directory '% s' created" % directory)
-    Repo.clone_from(url_pkg, 'dir')
+    Repo.clone_from(url_pkg, 'dir_pycpep')
+    path_rm_setup = os.path.join(path, 'setup.py')
+    os.remove(path_rm_setup)
+    path_rm_cfg = os.path.join(path, 'PyCpep/setup.cfg')
+    os.remove(path_rm_cfg)
+    path_rm_init = os.path.join(path, 'PyCpep/__init__.py')
+    os.remove(path_rm_init)
     print('Downloaded PyCpep in current directory.')
 
   def prediction(Ref,Sam):    
