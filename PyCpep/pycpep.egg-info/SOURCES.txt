@@ -1,8 +1,0 @@
-README.md
-setup.py
-pycpep/pycpep.egg-info/PKG-INFO
-pycpep/pycpep.egg-info/SOURCES.txt
-pycpep/pycpep.egg-info/dependency_links.txt
-pycpep/pycpep.egg-info/not-zip-safe
-pycpep/pycpep.egg-info/requires.txt
-pycpep/pycpep.egg-info/top_level.txt

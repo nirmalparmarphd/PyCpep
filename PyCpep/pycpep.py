@@ -7,6 +7,7 @@ import tensorflow as tf
 from tensorflow.keras.models import load_model
 import pkg_resources
 import keras
+import h5py
 
 initial_info = '''
                   -------------------------------------------------------
@@ -21,9 +22,9 @@ class prediction():
     if 0 < Ref <= 1 and 0 < Sam <= 1:   
       self.Ref = Ref
       self.Sam = Sam
-      scaler_file = pkg_resources.resource_stream(__name__,'ann/scaler.pkl')
       model_file = pkg_resources.resource_stream(__name__,'ann/micro_dsc_dl.hdf5') 
-      model = keras.models.load_model(model_file)
+      model = h5py.File(model_file, 'r')
+      scaler_file = pkg_resources.resource_stream(__name__,'ann/scaler.pkl')
       with open(scaler_file, 'rb') as f:
         scaler = pickle.load(f)
       vol_rel = (self.Ref*self.Ref)/self.Sam
