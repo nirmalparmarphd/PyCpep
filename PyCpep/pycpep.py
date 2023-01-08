@@ -22,7 +22,7 @@ class prediction():
       self.Ref = Ref
       self.Sam = Sam
       scaler_file = pkg_resources.resource_stream(__name__,'ann/scaler.pkl')
-      model_file = pkg_resources.resource_stream(__name__,'ann/micro_dsc_dl.h5') 
+      model_file = pkg_resources.resource_stream(__name__,'ann/micro_dsc_dl.hdf5') 
       model = keras.models.load_model(model_file)
       with open(scaler_file, 'rb') as f:
         scaler = pickle.load(f)

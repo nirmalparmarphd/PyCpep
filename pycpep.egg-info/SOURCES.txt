@@ -8,4 +8,6 @@ pycpep.egg-info/dependency_links.txt
 pycpep.egg-info/not-zip-safe
 pycpep.egg-info/requires.txt
 pycpep.egg-info/top_level.txt
+pycpep/ann/micro_dsc_dl.h5
+pycpep/ann/micro_dsc_dl.hdf5
 pycpep/ann/scaler.pkl
