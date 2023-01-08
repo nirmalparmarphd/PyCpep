@@ -1,5 +1,4 @@
 print('-'*70)
-
 import pandas as pd
 import numpy as np
 import pickle
@@ -9,12 +8,8 @@ import pkg_resources
 import keras
 import requests
 import wget
+print('Depended packages imported successfully.')
 
-# dwn h5 and pkl from GH
-#url_h5 = 'https://github.com/nirmalparmarphd/PyCpep/blob/main/PyCpep/ann/micro_dsc_dl.h5'
-#url_pkl = 'https://github.com/nirmalparmarphd/PyCpep/blob/main/PyCpep/ann/scaler.pkl'
-#response_h5 = wget.download(url_h5, 'micro_dsc_dl.h5')
-#response_pkl = wget.download(url_pkl, 'scaler.pkl')
 
 initial_info = '''
                   -------------------------------------------------------
@@ -25,14 +20,17 @@ initial_info = '''
                   -------------------------------------------------------'''
 print(initial_info)
 
-# dwn h5 and pkl from GH
-class dwn():
-    def __init__(self):
+class pkg():
+  def __init__(self):
+   print('PyCpep Loaded')
+   print(initial_info)
+
+  def load(self):
     url_pkg = 'https://github.com/nirmalparmarphd/PyCpep/blob/main/PyCpep/
     response_pkg = wget.download(url_pkg, 'PyCpep')
     print(response_pkg, '<-- Downloaded PyCpep in current directory.')
-class pkg():    
-  def __init__(self,Ref,Sam):    
+
+  def prediction(self,Ref,Sam):    
     if 0 < Ref <= 1 and 0 < Sam <= 1:
       self.Ref = Ref
       self.Sam = Sam
@@ -78,9 +76,9 @@ class pkg():
                 ## Two Third full cell:     0.66
                 ## One half full cell:      0.5
                 ## One third full cell:     0.33
-    ''')    
+            ''')    
 
-  def info():
+    def info():
       information ='''
         * This is a Deep learning (DL) ANN model to predict a deviation due to an inappropriate amount combination of the sample and a reference material in a batch cell of Tian-Calvet micro-DSC.
 
@@ -91,7 +89,7 @@ class pkg():
         * more details: https://github.com/nirmalparmarphd/PyCpep'''
       print(information)
 
-  def help():
+    def help():
       help_info = '''
         # prediction of error/deviation in the heat capacity measurement
         # use: prediction = dsc_error_model(Reference amount, Sample amount)
