@@ -10,5 +10,5 @@ setuptools.setup(name='pycpep',
         packages=setuptools.find_packages(),
         include_package_data=True,
         package_data={'': ['ann/*.h5', 'ann/*.pkl','ann/*.hdf5']},
-        install_requires=['scikit-learn','tensorflow','numpy', 'h5py','keras', 'wget', 'requests', 'gitpython'],
+        install_requires=['scikit-learn','tensorflow','numpy', 'h5py','keras', 'os', 'gitpython'],
         zip_safe=False)

@@ -1,0 +1,8 @@
+scikit-learn
+tensorflow
+numpy
+h5py
+keras
+wget
+requests
+gitpython
