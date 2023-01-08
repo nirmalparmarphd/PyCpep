@@ -9,14 +9,17 @@ import keras
 from git.repo.base import Repo
 import os
 
+print('-'*70)
 print('Depended packages imported successfully.')
-
 
 initial_info = '''
                   -------------------------------------------------------
-                  #--> import pkg:  import pycpep as pc
-                  #--> get info:    pc.prediction.info()
-                  #--> get help:    pc.prediction.help()
+                  #--> import pkg:    import pycpep as pc
+                  #--> load locally:  pc.pkg.load()
+                  #--> get info:      pc.pkg.info()
+                  #--> get help:      pc.pkg.help()
+                  #--> use MWE.py to check minimum working example.
+
                   more details: https://github.com/nirmalparmarphd/PyCpep
                   -------------------------------------------------------'''
 print(initial_info)
@@ -24,7 +27,7 @@ print(initial_info)
 class pkg():
   def __init__(self):
     print('-'*70)    
-    print('           PyCpep Loaded. You are Awesome!')
+    print('           PyCpep Loaded. You are Awesome!           ')
     print(initial_info)
 
   def load():
@@ -86,10 +89,10 @@ class pkg():
       print(''' ERROR! --> Entered value of of the reference or/and the standard amount is NOT appropriate.
 
               # NOTE: enter the sample and reference material amount as mentioned below
-                ## Full cell:               1.0 
-                ## Two Third full cell:     0.66
-                ## One half full cell:      0.5
-                ## One third full cell:     0.33
+                ## Full cell:               1.0     [0.80 to 1.00 ml]
+                ## Two Third full cell:     0.66    [0.40 to 0.80 ml]
+                ## One half full cell:      0.5     [0.26 to 0.40 ml]
+                ## One third full cell:     0.33    [0.10 to 0.26 ml]
             ''')    
 
   def info():
@@ -108,22 +111,23 @@ class pkg():
         # prediction of error/deviation in the heat capacity measurement
         # use: prediction = dsc_error_model(Reference amount, Sample amount)
         # NOTE: enter the sample and reference material amount as mentioned below
-            ## Full cell:               1.0 
-            ## Two Third full cell:     0.66
-            ## One half full cell:      0.5
-            ## One third full cell:     0.33
+                ## Full cell:               1.0     [0.80 to 1.00 ml]
+                ## Two Third full cell:     0.66    [0.40 to 0.80 ml]
+                ## One half full cell:      0.5     [0.26 to 0.40 ml]
+                ## One third full cell:     0.33    [0.10 to 0.26 ml]
 
         ### MINIMUM WORKING EXAMPLE ###
 
         # import module
         >>> import pycpep as pc
 
-        # defining values
-        >>> Reference_amount = 1
-        >>> Sample_amount = 1
+        # pkg check
+        >>> pc.pkg()
 
-        # prediction of deviation in heat capacity measurement
-        >>> error_pred = pc.prediction(Reference_amount,Sample_amount)
+        # download pkg locally with dependencies and minimum working example (MWE)
+        >>> pc.pkg.load()
+
+        # change to 'dir_pycpep' to access MWE.py
             '''  
       print(help_info)
 

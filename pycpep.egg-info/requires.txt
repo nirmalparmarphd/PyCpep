@@ -1,6 +1,0 @@
-scikit-learn
-tensorflow
-numpy
-h5py
-keras
-gitpython
