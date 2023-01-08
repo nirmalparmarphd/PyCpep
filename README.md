@@ -1,10 +1,10 @@
-# PyCpep
+# [PyCpep]((https://pypi.org/project/pycpep/1.0.1/))
 Prediction in the isobaric heat capacity measurement (at 298~K) deviation due to improper amount of the sample or/and calibration standard in Tian-Calvet microDSC
 
-> Estimated ANN Model prediction accuracy over the test data is '99.83[%]' and R2-score 99.39
+> Estimated ANN Model prediction accuracy over the test data is '99.83[%]' and R2-score 99.4
 
 # Direction
-1. Open terminal and install the PyCpep package by the following pip command.
+1. Open terminal and install the [PyCpep](https://pypi.org/project/pycpep/1.0.1/) package by the following pip command.
 ```
 pip install pycpep
 ```
@@ -13,7 +13,6 @@ pip install pycpep
 $ python
 
 >>> import pycpep as pc
-
 ----------------------------------------------------------------------
 Depended packages imported successfully.
 
@@ -22,6 +21,7 @@ Depended packages imported successfully.
                   #--> load locally:  pc.pkg.load()
                   #--> get info:      pc.pkg.info()
                   #--> get help:      pc.pkg.help()
+                  #--> prediction:    pc.pkg.prediction()
                   #--> use MWE.py to check minimum working example.
 
                   more details: https://github.com/nirmalparmarphd/PyCpep

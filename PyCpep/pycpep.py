@@ -45,7 +45,8 @@ class pkg():
       print("Directory '% s' created" % directory)
       Repo.clone_from(url_pkg, 'dir_pycpep')
     else:
-      print("Directory '% s' already exist!" % directory)      
+      print("Directory '% s' already exist!" % directory)
+      exit()   
     path_rm_setup = os.path.join(path, 'setup.py')
     os.remove(path_rm_setup)
     path_rm_cfg = os.path.join(path, 'PyCpep/setup.cfg')
@@ -53,6 +54,9 @@ class pkg():
     path_rm_init = os.path.join(path, 'PyCpep/__init__.py')
     os.remove(path_rm_init)
     print('Downloaded PyCpep in current directory.')
+    path_chwd = os.path.join(path, 'PyCpep')
+    os.chdir(path_chwd)
+    exit()
 
   def prediction(Ref,Sam):    
     if 0 < Ref <= 1 and 0 < Sam <= 1:
