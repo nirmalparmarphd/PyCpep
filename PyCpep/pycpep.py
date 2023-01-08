@@ -18,6 +18,7 @@ initial_info = '''
                   #--> load locally:  pc.pkg.load()
                   #--> get info:      pc.pkg.info()
                   #--> get help:      pc.pkg.help()
+                  #--> prediction:    pc.pkg.prediction()
                   #--> use MWE.py to check minimum working example.
 
                   more details: https://github.com/nirmalparmarphd/PyCpep
