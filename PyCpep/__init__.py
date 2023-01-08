@@ -1,2 +1,1 @@
-from .pycpep import dwn
-from .pycpep import prediction
+from .pycpep import pkg

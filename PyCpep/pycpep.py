@@ -8,6 +8,9 @@ import pkg_resources
 import keras
 import requests
 import wget
+from git.repo.base import Repo
+import os
+
 print('Depended packages imported successfully.')
 
 
@@ -22,13 +25,15 @@ print(initial_info)
 
 class pkg():
   def __init__(self):
-   print('PyCpep Loaded')
-   print(initial_info)
+    print('-'*70)    
+    print('           PyCpep Loaded. You are Awesome!')
+    print(initial_info)
 
-  def load(self):
-    url_pkg = 'https://github.com/nirmalparmarphd/PyCpep/blob/main/PyCpep/
-    response_pkg = wget.download(url_pkg, 'PyCpep')
-    print(response_pkg, '<-- Downloaded PyCpep in current directory.')
+  def load():
+    print('-'*70)    
+    url_pkg = 'https://github.com/nirmalparmarphd/PyCpep/blob/main/PyCpep'
+    Repo.clone_from(url_pkg, os.getcwd())
+    print('Downloaded PyCpep in current directory.')
 
   def prediction(self,Ref,Sam):    
     if 0 < Ref <= 1 and 0 < Sam <= 1:
@@ -38,7 +43,7 @@ class pkg():
       with open('mdl/scaler.pkl' , 'rb') as f:
         scaler = pickle.load(f)
       # loading ann model
-      model = keras.models.load_model('mdl/micro_dsc_dl.h5')
+      model = keras.models.load_model('mdl/model.h5')
       # calculating vol-rel
       vol_rel = (self.Ref*self.Ref)/self.Sam
       data = [self.Ref, self.Sam, vol_rel]
@@ -78,7 +83,7 @@ class pkg():
                 ## One third full cell:     0.33
             ''')    
 
-    def info():
+  def info():
       information ='''
         * This is a Deep learning (DL) ANN model to predict a deviation due to an inappropriate amount combination of the sample and a reference material in a batch cell of Tian-Calvet micro-DSC.
 
@@ -89,7 +94,7 @@ class pkg():
         * more details: https://github.com/nirmalparmarphd/PyCpep'''
       print(information)
 
-    def help():
+  def help():
       help_info = '''
         # prediction of error/deviation in the heat capacity measurement
         # use: prediction = dsc_error_model(Reference amount, Sample amount)
