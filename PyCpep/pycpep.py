@@ -7,7 +7,14 @@ import tensorflow as tf
 from tensorflow.keras.models import load_model
 import pkg_resources
 import keras
-import h5py
+import requests
+import wget
+
+# dwn h5 and pkl from GH
+#url_h5 = 'https://github.com/nirmalparmarphd/PyCpep/blob/main/PyCpep/ann/micro_dsc_dl.h5'
+#url_pkl = 'https://github.com/nirmalparmarphd/PyCpep/blob/main/PyCpep/ann/scaler.pkl'
+#response_h5 = wget.download(url_h5, 'micro_dsc_dl.h5')
+#response_pkl = wget.download(url_pkl, 'scaler.pkl')
 
 initial_info = '''
                   -------------------------------------------------------
@@ -16,23 +23,33 @@ initial_info = '''
                   #--> get help:    pc.prediction.help()
                   more details: https://github.com/nirmalparmarphd/PyCpep
                   -------------------------------------------------------'''
-print(initial_info)  
-class prediction():    
-  def __init__(self,Ref,Sam):
-    if 0 < Ref <= 1 and 0 < Sam <= 1:   
+print(initial_info)
+
+# dwn h5 and pkl from GH
+class dwn():
+    def __init__(self):
+    url_pkg = 'https://github.com/nirmalparmarphd/PyCpep/blob/main/PyCpep/
+    response_pkg = wget.download(url_pkg, 'PyCpep')
+    print(response_pkg, '<-- Downloaded PyCpep in current directory.')
+class pkg():    
+  def __init__(self,Ref,Sam):    
+    if 0 < Ref <= 1 and 0 < Sam <= 1:
       self.Ref = Ref
       self.Sam = Sam
-      model_file = pkg_resources.resource_stream(__name__,'ann/micro_dsc_dl.hdf5') 
-      model = h5py.File(model_file, 'r')
-      scaler_file = pkg_resources.resource_stream(__name__,'ann/scaler.pkl')
-      with open(scaler_file, 'rb') as f:
+      # loading scaler
+      with open('mdl/scaler.pkl' , 'rb') as f:
         scaler = pickle.load(f)
+      # loading ann model
+      model = keras.models.load_model('mdl/micro_dsc_dl.h5')
+      # calculating vol-rel
       vol_rel = (self.Ref*self.Ref)/self.Sam
       data = [self.Ref, self.Sam, vol_rel]
       data = pd.DataFrame([data])
+      # scaling data
       data_ = scaler.transform(data)
+      # prediction from ann model
       pred = model.predict(data_)
-      pred_ = np.round(((pred*100)-100).astype(np.float64),1)
+      pred_ = np.round(((pred*100)-100).astype(np.float64),2)
       
       print('-'*70)
       print('Reference amount : ', Ref)
