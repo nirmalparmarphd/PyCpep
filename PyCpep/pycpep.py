@@ -42,7 +42,9 @@ class pkg():
     if not isExist:    
       os.mkdir(path)
       print("Directory '% s' created" % directory)
-    Repo.clone_from(url_pkg, 'dir_pycpep')
+      Repo.clone_from(url_pkg, 'dir_pycpep')
+    else:
+      print("Directory '% s' already exist!" % directory)      
     path_rm_setup = os.path.join(path, 'setup.py')
     os.remove(path_rm_setup)
     path_rm_cfg = os.path.join(path, 'PyCpep/setup.cfg')
@@ -135,6 +137,8 @@ class pkg():
         >>> pc.pkg.load()
 
         # change to 'dir_pycpep' to access MWE.py
+
+         * more details: https://github.com/nirmalparmarphd/PyCpep
 
             '''  
       print(help_info)

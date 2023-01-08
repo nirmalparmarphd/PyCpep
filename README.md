@@ -1,59 +1,86 @@
-# microDSC_error_prediction_ANN
+# PyCpep
 Prediction in the isobaric heat capacity measurement (at 298~K) deviation due to improper amount of the sample or/and calibration standard in Tian-Calvet microDSC
 
-> Estimated ANN Model prediction accuracy over the test data is '99.82[%]'
+> Estimated ANN Model prediction accuracy over the test data is '99.83[%]' and R2-score 99.39
 
-# Requirements
-Dependent packages can be downloaded by following python command. Please ignore this step if you already satisfy this requirements.
+# Direction
+1. Open terminal and install the PyCpep package by the following pip command.
+```
+pip install pycpep
+```
+2. To check a pkg download and a pkg importing for the setup. Python 3.8 or higher version is required.
+```
+$ python
+
+>>> import pycpep as pc
+
+----------------------------------------------------------------------
+Depended packages imported successfully.
+
+                  -------------------------------------------------------
+                  #--> import pkg:    import pycpep as pc
+                  #--> load locally:  pc.pkg.load()
+                  #--> get info:      pc.pkg.info()
+                  #--> get help:      pc.pkg.help()
+                  #--> use MWE.py to check minimum working example.
+
+                  more details: https://github.com/nirmalparmarphd/PyCpep
+                  -------------------------------------------------------
+                  
+```
+3. Download pkg dependencies and ANN model locally for the prediction in the current working directory.
 
 ```
-pip install -r numpy tensorflow joblib ipython
+>>> pc.pkg.load()
+
+----------------------------------------------------------------------
+Directory 'dir_pycpep' created
+Downloaded PyCpep in current directory.
 ```
-**OR**
+
+4. Navigate to 'dir_pycpep' to fine the minimum working example (MWE.py) and run in with the python to predict the deviation in heat capacity measurement.
 
 Minimum Working Example
 
 ```python:
-# prediction of error/deviation in the heat capacity measurement
-# use: prediction = dsc_error_model(Reference amount, Sample amount)
-# NOTE: enter the sample and reference material amount as mentioned below
-    ## Full cell:               1.0 
-    ## Two Third full cell:     0.66
-    ## One half full cell:      0.5
-    ## One third full cell:     0.33
-
-
-### MINIMUM WORKING EXAMPLE ###
-
-# import module
+# to load pkg
 import pycpep as pc
 
-# defining values
-Reference_amount = 1
-Sample_amount = 1
+# to check pkg is loaded
+pc.pkg()
 
-# prediction of deviation in heat capacity measurement
-error_pred = pc.prediction(Reference_amount,Sample_amount)
+#   to download pkg and its dependencies locally 
+##  pc.pkg.load() #NOTE: only use to download!
 
-# for help
-pc.prediction.help()
+# to get quick info on pkg
+pc.pkg.info()
 
-# for info of model
-pc.prediction.info()
+# to get quick help on use
+pc.pkg.help()
+
+# NOTE: enter the sample and reference material amount as mentioned below
+    ## Full cell:               1.0     [0.80 to 1.00 ml]
+    ## Two Third full cell:     0.66    [0.40 to 0.80 ml]
+    ## One half full cell:      0.5     [0.26 to 0.40 ml]
+    ## One third full cell:     0.33    [0.10 to 0.26 ml]
+# prediction of the deviation in heat capacity measurement
+
+R = 1 # Reference amount
+S = 1 # Sample amount
+pc.pkg.prediction(R,S)
+
 ```
-
-The example output
-
+Example output of the prediction shown in the MWE.py
 ```
-1/1 [==============================] - 0s 392ms/step
+1/1 [==============================] - 0s 494ms/step
 ----------------------------------------------------------------------
 Reference amount :  1
 Sample amount :  1
 Heat capacity measurement deviation prediction (%):  [[-0.1]]
 COMMENT(s):
-            The predicted deviation is below 1%!
-            The combination of the sample and the reference amount is appropriate.
-            NOTE:
-            Consider 0.8~ml as standard amount to avoid any deviation in the measurement.
-----------------------------------------------------------------------
+              You are Awesome!! The predicted deviation is below 1%!
+              The combination of the sample and the reference amount is appropriate.
+              NOTE:
+              Consider 0.8~ml as standard amount to avoid any deviation in the measurement.
+------------------------------------------------------
 ```
