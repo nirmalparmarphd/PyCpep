@@ -42,6 +42,13 @@ Downloaded PyCpep in current directory.
 
 Minimum Working Example
 
+```
+$ cd dir_pycpep
+$ python MWE.py
+```
+
+## OR
+
 ```python:
 # to load pkg
 import pycpep as pc
