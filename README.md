@@ -56,8 +56,8 @@ import pycpep as pc
 # to check pkg is loaded
 pc.pkg()
 
-#   to download pkg and its dependencies locally 
-##  pc.pkg.load() #NOTE: only use to download!
+# to download pkg and its dependencies locally 
+pc.pkg.load() #NOTE: only use to download!
 
 # to get quick info on pkg
 pc.pkg.info()
