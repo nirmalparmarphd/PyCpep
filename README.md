@@ -1,5 +1,5 @@
-# [PyCpep]((https://pypi.org/project/pycpep/1.0.1/))
-Prediction in the isobaric heat capacity measurement (at 298~K) deviation due to improper amount of the sample or/and calibration standard in Tian-Calvet microDSC
+# [PyCpep](https://pypi.org/project/pycpep/1.0.1/)
+[PyCpep](https://pypi.org/project/pycpep/1.0.1/) package predicts the deviation in the isobaric heat capacity measurement (at 298~K) due to the improper amount of the sample or/and calibration standard in Tian-Calvet microDSC
 
 > Estimated ANN Model prediction accuracy over the test data is '99.83[%]' and R2-score 99.4
 
@@ -8,7 +8,7 @@ Prediction in the isobaric heat capacity measurement (at 298~K) deviation due to
 ```
 pip install pycpep
 ```
-2. To check a pkg download and a pkg importing for the setup. Python 3.8 or higher version is required.
+2. To check the pkg download and importing the pkg in python. Python 3.8 or higher version is required.
 ```
 $ python
 
