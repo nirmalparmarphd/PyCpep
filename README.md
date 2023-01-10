@@ -51,7 +51,7 @@ $ python MWE.py
 
 ```python:
 # to load pkg
-import pycpep as pc
+from PyCpep import pycpep as pc
 
 # to check pkg is loaded
 pc.pkg()
