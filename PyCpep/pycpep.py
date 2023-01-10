@@ -137,7 +137,7 @@ class pkg():
         ### MINIMUM WORKING EXAMPLE ###
 
         # import module
-        >>> from PyCpep import pycpep as pc
+        >>> import pycpep as pc
 
         # pkg check
         >>> pc.pkg()
