@@ -17,7 +17,7 @@ $ python
 Depended packages imported successfully.
 
                   -------------------------------------------------------
-                  #--> import pkg:    from PyCpep import pycpep as pc
+                  #--> import pkg:    import pycpep as pc
                   #--> load locally:  pc.pkg.load()
                   #--> get info:      pc.pkg.info()
                   #--> get help:      pc.pkg.help()
@@ -51,7 +51,7 @@ $ python MWE.py
 
 ```python:
 # to load pkg
-from PyCpep import pycpep as pc
+import pycpep as pc
 
 # to check pkg is loaded
 pc.pkg()
@@ -83,7 +83,7 @@ Example output of the prediction shown in the MWE.py
 ----------------------------------------------------------------------
 Reference amount :  1
 Sample amount :  1
-Heat capacity measurement deviation prediction (%):  [[-0.1]]
+Heat capacity measurement deviation prediction (%):  [[0.01]]
 COMMENT(s):
               You are Awesome!! The predicted deviation is below 1%!
               The combination of the sample and the reference amount is appropriate.

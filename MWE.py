@@ -1,7 +1,7 @@
 # to load pkg
-from PyCpep import pycpep as pc
-# OR
-# import pycpep as pc
+import pycpep as pc
+## OR
+# from PyCpep import pycpep as pc
 
 # to check pkg is loaded
 pc.pkg()

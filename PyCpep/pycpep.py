@@ -14,7 +14,7 @@ print('Depended packages imported successfully.')
 
 initial_info = '''
                   -------------------------------------------------------
-                  #--> import pkg:    from PyCpep import pycpep as pc
+                  #--> import pkg:    import pycpep as pc
                   #--> load locally:  pc.pkg.load()
                   #--> get info:      pc.pkg.info()
                   #--> get help:      pc.pkg.help()
@@ -101,6 +101,7 @@ class pkg():
       print(''' ERROR! --> Entered value of of the reference or/and the standard amount is NOT appropriate.
 
               # NOTE: enter the sample and reference material amount as mentioned below
+              
                 ## Full cell:               1.0     [0.80 to 1.00 ml]
                 ## Two Third full cell:     0.66    [0.40 to 0.80 ml]
                 ## One half full cell:      0.5     [0.26 to 0.40 ml]
@@ -127,6 +128,7 @@ class pkg():
         # prediction of error/deviation in the heat capacity measurement
         # use: prediction = dsc_error_model(Reference amount, Sample amount)
         # NOTE: enter the sample and reference material amount as mentioned below
+
                 ## Full cell:               1.0     [0.80 to 1.00 ml]
                 ## Two Third full cell:     0.66    [0.40 to 0.80 ml]
                 ## One half full cell:      0.5     [0.26 to 0.40 ml]
