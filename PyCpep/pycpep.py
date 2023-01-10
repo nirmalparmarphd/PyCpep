@@ -61,10 +61,12 @@ class pkg():
   def prediction(Ref,Sam):    
     if 0 < Ref <= 1 and 0 < Sam <= 1:
       # loading scaler
-      with open('PyCpep/mdl/scaler.pkl', 'rb') as f:
+      abs_path_pkl = os.path.abspath('PyCpep/mdl/scaler.pkl')
+      with open(abs_path_pkl, 'rb') as f:
         scaler = pickle.load(f)
       # loading ann model
-      model = keras.models.load_model('PyCpep/mdl/model.h5')
+      abs_path_h5 = os.path.abspath('PyCpep/mdl/model.h5')
+      model = keras.models.load_model(abs_path_h5)
       # calculating vol-rel
       vol_rel = (Ref*Ref)/Sam
       data = [Ref, Sam, vol_rel]
