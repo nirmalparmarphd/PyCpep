@@ -17,7 +17,7 @@ $ python
 Depended packages imported successfully.
 
                   -------------------------------------------------------
-                  #--> import pkg:    import pycpep as pc
+                  #--> import pkg:    from PyCpep import pycpep as pc
                   #--> load locally:  pc.pkg.load()
                   #--> get info:      pc.pkg.info()
                   #--> get help:      pc.pkg.help()
