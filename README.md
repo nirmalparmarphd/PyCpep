@@ -14,7 +14,7 @@ $ python
 
 >>> import pycpep as pc
 ----------------------------------------------------------------------
-Depended packages imported successfully.
+PyCpep imported successfully.
 
                   -------------------------------------------------------
                   #--> import pkg:    import pycpep as pc
