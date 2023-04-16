@@ -1,1 +1,1 @@
-from .pycpep import pkg
+from .pycpep import DeviationPredictor

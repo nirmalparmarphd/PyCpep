@@ -1,19 +1,21 @@
 # to load pkg
-import pycpep as pc
-## OR
-# from PyCpep import pycpep as pc
+from PyCpep import DeviationPredictor
 
-# to check pkg is loaded
-pc.pkg()
+deviation = DeviationPredictor()
 
-# to download pkg and its dependencies locally 
-# pc.pkg.load() #NOTE: only use to download!
+# help
+help(deviation)
 
-# to get quick info on pkg
-pc.pkg.info()
+# info
+deviation.info()
 
-# to get quick help on use
-pc.pkg.help()
+# Minimum working example download for a quick start
+deviation.laod_locally()
+
+# deviation prediction
+R = 1 # Reference amount
+S = 1 # Sample amount
+deviation.deviation_prediction(R,S)
 
 # NOTE: enter the sample and reference material amount as mentioned below
     ## Full cell:               1.0     [0.80 to 1.00 ml]
@@ -22,6 +24,4 @@ pc.pkg.help()
     ## One third full cell:     0.33    [0.10 to 0.26 ml]
 # prediction of the deviation in heat capacity measurement
 
-R = 1 # Reference amount
-S = 1 # Sample amount
-pc.pkg.prediction(R,S)
+

@@ -1,4 +1,3 @@
-print('-'*70)
 import pandas as pd
 import numpy as np
 import pickle
@@ -8,65 +7,110 @@ import pkg_resources
 import keras
 from git.repo.base import Repo
 import os
+import joblib
+import h5py
 
-print('-'*70)
-print('Depended packages imported successfully.')
+class DeviationPredictor:
+  '''
+  ## DeviationPredictor
+  DeviationPredictor is a class from PyCpep package to predict a deviation in the heat capacity measurement (at 298~K) due to the improper amount of the sample or/and calibration standard in Tian-Calvet microDSC. PyCpep package works on the well-trained artificial neural network (ANN) model.
+  
+  ## useage:\n
+  ## importing module\n
+  from pycpep import DeviationPredictor\n
+  deviation = DeviationPredictor(Ref, Sam)
+  ## calling help
+  help(deviation)
+  ## quick info
+  deviation.info()
+  ## downloading trained model locally
+  deviation.load_locally()
+  ## deviation prediction
+  deviation.deviation_prediction()
 
-initial_info = '''
-                  -------------------------------------------------------
-                  #--> import pkg:    import pycpep as pc
-                  #--> load locally:  pc.pkg.load()
-                  #--> get info:      pc.pkg.info()
-                  #--> get help:      pc.pkg.help()
-                  #--> prediction:    pc.pkg.prediction()
-                  #--> use MWE.py to check minimum working example.
+  more details: https://github.com/nirmalparmarphd/PyCpep
+  '''
 
-                  more details: https://github.com/nirmalparmarphd/PyCpep
-                  -------------------------------------------------------
-                  
-                  '''
-print(initial_info)
-
-class pkg():
   def __init__(self):
-    print('-'*70)    
-    print('           PyCpep Loaded. You are Awesome!           ')
-    print(initial_info)
+    # path
+    
+    # defining variables
+    print("Imported DeviationPredictor sucessfully.")
+    self.amount_info_msg ="""
+    ERROR! --> Entered value of of the reference or/and the standard amount is NOT appropriate.
 
-  def load():
-    print('-'*70)    
-    url_pkg = 'https://github.com/nirmalparmarphd/PyCpep'
+      # NOTE: enter the sample and reference material amount as mentioned below
+      
+        ## Full cell:               1.0     [0.80 to 1.00 ml]
+        ## Two Third full cell:     0.66    [0.40 to 0.80 ml]
+        ## One half full cell:      0.5     [0.26 to 0.40 ml]
+        ## One third full cell:     0.33    [0.10 to 0.26 ml] 
+        
+      For more information please check 'https://github.com/nirmalparmarphd/PyCpep'.
+    """
+    self.information ='''
+      * This is a Deep learning (DL) ANN model to predict a deviation due to an inappropriate amount combination of the sample and a reference material in a batch cell of Tian-Calvet micro-DSC.
+
+      * This ANN model predicts the possible deviation that may arise in the heat capacity measurement experiment due to in appropriate combination of the sample and the reference material amount!
+
+      --> ANN Model accuracy on the test data is 99.83 [%] <--
+      
+      * more details: https://github.com/nirmalparmarphd/PyCpep
+      
+      '''
+  ## ANN model loading method
+  def load_locally(self):
+    """
+    ## DeviationPredictor.load_locally()
+    load_locally method downloads a minimum working example(.py) for a quick start.
+
+    ### useage:\n
+    from pycpep import DeviationPredictor\n
+    deviation = DeviationPredictor()\n
+    deviation.load_locally() 
+    """
+    url_mdl = 'https://github.com/nirmalparmarphd/PyCpep/MWE.py'
     cwd = os.getcwd()
-    directory = 'dir_pycpep'
+    directory = 'mwe_pycpep'
     path = os.path.join(cwd, directory)
     isExist = os.path.exists(path)
     if not isExist:    
       os.mkdir(path)
       print("Directory '% s' created" % directory)
-      Repo.clone_from(url_pkg, 'dir_pycpep')
+      Repo.clone_from(url_mdl, directory)
     else:
       print("Directory '% s' already exist!" % directory)
-      exit()   
-    path_rm_setup = os.path.join(path, 'setup.py')
-    os.remove(path_rm_setup)
-    path_rm_cfg = os.path.join(path, 'PyCpep/setup.cfg')
-    os.remove(path_rm_cfg)
-    path_rm_init = os.path.join(path, 'PyCpep/__init__.py')
-    os.remove(path_rm_init)
-    print('Downloaded PyCpep in current directory.')
+      quit()   
+    print('Downloaded the latest trained nureal network model from the PyCpep package source sucessfully.')
     path_chwd = os.path.join(path, 'PyCpep')
     os.chdir(path_chwd)
-    exit()
+    quit()
 
-  def prediction(Ref,Sam):    
+  ## deviation prediction method
+  def deviation_prediction(self, Ref:float, Sam:float):
+    """
+    ## DeviationPredictor.deviation_prediction()
+    deviation_prediction method predicts a possible deviation in the heat capacity measurement as a function of the sample and the reference material amount(mg).
+
+    ### useage:\n
+    from pycpep import DeviationPredictor\n
+    deviation = DeviationPredictor()\n
+    deviation.deviation_prediction() 
+    """
+
+    self.Ref = Ref
+    self.Sam = Sam
+    assert 0 < Ref <= 1 and 0 < Sam <= 1, f"[Ref:{self.Ref}, Sam:{self.Sam}]: Please enter the correct amount of the sample and the reference material.\n {self.amount_info_msg}"
+    
     if 0 < Ref <= 1 and 0 < Sam <= 1:
       # loading scaler
-      abs_path_pkl = os.path.abspath('PyCpep/mdl/scaler.pkl')
-      with open(abs_path_pkl, 'rb') as f:
-        scaler = pickle.load(f)
+      abs_path_pkl = pkg_resources.resource_stream(__name__, 'mdl/scaler.pkl')
+      scaler = joblib.load(abs_path_pkl)
+      #with open(f'{abs_path_pkl}', 'rb') as f:
+      #  scaler = pickle.load(f)
       # loading ann model
-      abs_path_h5 = os.path.abspath('PyCpep/mdl/model.h5')
-      model = keras.models.load_model(abs_path_h5)
+      abs_path_h5 = pkg_resources.resource_stream(__name__, 'mdl/model.hdf5')
+      model = load_model(abs_path_h5)
       # calculating vol-rel
       vol_rel = (Ref*Ref)/Sam
       data = [Ref, Sam, vol_rel]
@@ -76,80 +120,36 @@ class pkg():
       # prediction from ann model
       pred = model.predict(data_)
       pred_ = np.round(((pred*100)-100).astype(np.float64),2)
-      
-      print('-'*70)
+      print('-'*50)      
       print('Reference amount : ', Ref)
       print('Sample amount : ', Sam)
       
       if abs(pred_) <= 1.5:
-        print('Heat capacity measurement deviation prediction (%): ', pred_)
+        print(f'Heat capacity measurement deviation prediction {pred_} (%)')
         print('''COMMENT(s):
               You are Awesome!! The predicted deviation is below 1%!
               The combination of the sample and the reference amount is appropriate.
-              NOTE:
-              Consider 0.8~ml as standard amount to avoid any deviation in the measurement.''')
-        print('-'*70)
+              ''')
+        print('-'*50)
       else:
-        print('Heat capacity measurement deviation prediction (%): ', pred_)
+        print(f'Heat capacity measurement deviation prediction {pred_} (%)')
         print('''COMMENT(s): 
               The combination of the sample and the reference amount is NOT appropriate.
-              NOTE:
-              Consider 0.8~ml as standard amount to avoid any deviation in the measurement.
               ''')
-      print('-'*70)
+        # NOTE:Consider 0.8~ml as standard amount to avoid any deviation in the measurement.
+      print('-'*50)
     else:
-      print(''' ERROR! --> Entered value of of the reference or/and the standard amount is NOT appropriate.
+      print(f'{self.amount_info_msg}')
+      print('-'*50)
 
-              # NOTE: enter the sample and reference material amount as mentioned below
-              
-                ## Full cell:               1.0     [0.80 to 1.00 ml]
-                ## Two Third full cell:     0.66    [0.40 to 0.80 ml]
-                ## One half full cell:      0.5     [0.26 to 0.40 ml]
-                ## One third full cell:     0.33    [0.10 to 0.26 ml]
-            ''')
-      print('-'*70)
+  def info(self):
+      """
+      ## DeviationPredictor.info()
+      Get a quick info on a module useage.
 
-  def info():
-      information ='''
-        * This is a Deep learning (DL) ANN model to predict a deviation due to an inappropriate amount combination of the sample and a reference material in a batch cell of Tian-Calvet micro-DSC.
-
-        * This ANN model predicts the possible deviation that may arise in the heat capacity measurement experiment due to in appropriate combination of the sample and the reference material amount!
-
-        --> ANN Model accuracy on the test data is 99.82 [%] <--
-        
-        * more details: https://github.com/nirmalparmarphd/PyCpep
-        
-        '''
-      print(information)
-      print('-'*70)
-
-  def help():
-      help_info = '''
-        # prediction of error/deviation in the heat capacity measurement
-        # use: prediction = dsc_error_model(Reference amount, Sample amount)
-        # NOTE: enter the sample and reference material amount as mentioned below
-
-                ## Full cell:               1.0     [0.80 to 1.00 ml]
-                ## Two Third full cell:     0.66    [0.40 to 0.80 ml]
-                ## One half full cell:      0.5     [0.26 to 0.40 ml]
-                ## One third full cell:     0.33    [0.10 to 0.26 ml]
-
-        ### MINIMUM WORKING EXAMPLE ###
-
-        # import module
-        >>> import pycpep as pc
-
-        # pkg check
-        >>> pc.pkg()
-
-        # download pkg locally with dependencies and minimum working example (MWE)
-        >>> pc.pkg.load()
-
-        # change to 'dir_pycpep' to access MWE.py
-
-         * more details: https://github.com/nirmalparmarphd/PyCpep
-
-            '''  
-      print(help_info)
-      print('-'*70)
-
+      ### useage:\n
+      from pycpep import DeviationPredictor\n
+      deviation = DeviationPredictor()\n
+      deviation.info() 
+      """
+      print(self.information)
