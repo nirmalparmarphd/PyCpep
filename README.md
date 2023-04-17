@@ -1,7 +1,7 @@
 # [PyCpep](https://pypi.org/project/pycpep/)
 [PyCpep](https://pypi.org/project/pycpep/) package predicts the deviation in the isobaric heat capacity measurement (at 298~K) due to the improper amount of the sample or/and calibration standard in Tian-Calvet microDSC. PyCpep package works on the well-trained artificial neural network (ANN) model.
 
-> Estimated PyCpep prediction accuracy over the test data is '99.83[%]' and R2-score 99.4
+> Estimated PyCpep prediction accuracy over the test data is 99.83[%] and R2-score 99.4
 
 # Direction
 1. Open terminal and install the [PyCpep](https://pypi.org/project/pycpep/) package by the following pip command.
@@ -12,23 +12,23 @@ pip install pycpep
 ```
 $ python
 
-  ## DeviationPredictor
-  DeviationPredictor is a class from PyCpep package to predict a deviation in the heat capacity measurement (at 298~K) due to the improper amount of the sample or/and calibration standard in Tian-Calvet microDSC. PyCpep package works on the well-trained artificial neural network (ANN) model.
-  
-  ## useage:\n
-  ## importing module\n
-  from pycpep import DeviationPredictor\n
-  deviation = DeviationPredictor(Ref, Sam)
-  ## calling help
-  help(deviation)
-  ## quick info
-  deviation.info()
-  ## downloading trained model locally
-  deviation.load_locally()
-  ## deviation prediction
-  deviation.deviation_prediction()
+## DeviationPredictor
+DeviationPredictor is a class from PyCpep package to predict a deviation in the heat capacity measurement (at 298~K) due to the improper amount of the sample or/and calibration standard in Tian-Calvet microDSC. PyCpep package works on the well-trained artificial neural network (ANN) model.
 
-  more details: https://github.com/nirmalparmarphd/PyCpep
+## useage:
+## importing module
+from pycpep import DeviationPredictor
+deviation = DeviationPredictor(Ref, Sam)
+## calling help
+help(deviation)
+## quick info
+deviation.info()
+## downloading trained model locally
+deviation.load_locally()
+## deviation prediction
+deviation.deviation_prediction()
+
+
 ```
 ## Minimum Working Example
 ```

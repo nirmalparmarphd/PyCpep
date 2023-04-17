@@ -1,11 +1,11 @@
 import setuptools
 
-setuptools.setup(name='PyCpep',
-        version='1.0.6',
+setuptools.setup(name='pycpep',
+        version='1.1.1',
         license='MIT',
         url='https://github.com/nirmalparmarphd/PyCpep',
         description='Predicts deviation in the heat capacity measurement for microDSC Tian-Calvet', 
-        long_description=open('README.md').read(),
+        long_description='README.md',
         author='Nirmal Parmar',
         author_email='nirmalparmarphd@gmail.com',
         packages=setuptools.find_packages(),
