@@ -8,7 +8,7 @@ import keras
 from git.repo.base import Repo
 import os
 import joblib
-import h5py
+import shutil
 
 class DeviationPredictor:
   '''
@@ -69,48 +69,49 @@ class DeviationPredictor:
     deviation = DeviationPredictor()\n
     deviation.load_locally() 
     """
-    url_mdl = 'https://github.com/nirmalparmarphd/PyCpep/MWE.py'
+    
+    url_mwe = 'https://github.com/nirmalparmarphd/PyCpep/'
     cwd = os.getcwd()
-    directory = 'mwe_pycpep'
+    directory = 'pkg_pycpep'
     path = os.path.join(cwd, directory)
+    self.path = path
     isExist = os.path.exists(path)
     if not isExist:    
       os.mkdir(path)
       print("Directory '% s' created" % directory)
-      Repo.clone_from(url_mdl, directory)
+      Repo.clone_from(url_mwe, directory)
+      print(f'Downloaded the latest trained nureal network model from the PyCpep package source sucessfully at: {path}')
     else:
       print("Directory '% s' already exist!" % directory)
-      quit()   
-    print('Downloaded the latest trained nureal network model from the PyCpep package source sucessfully.')
-    path_chwd = os.path.join(path, 'PyCpep')
-    os.chdir(path_chwd)
-    quit()
+    # cleaning garbage 
+    os.remove(os.path.join(path,"setup.py"))
+    os.remove(os.path.join(path,"PyCpep/__init__.py"))
+    os.remove(os.path.join(path,"PyCpep/pycpep.py"))
+    os.remove(os.path.join(path,"PyCpep/setup.cfg"))
+    shutil.rmtree(os.path.join(path,"PyCpep/__pycache__"),ignore_errors=True)
 
   ## deviation prediction method
-  def deviation_prediction(self, Ref:float, Sam:float):
+  def deviation_prediction(self, Ref:float, Sam:float, scaler_pkl="scaler.pkl", mdl_h5="model.h5"):
     """
     ## DeviationPredictor.deviation_prediction()
-    deviation_prediction method predicts a possible deviation in the heat capacity measurement as a function of the sample and the reference material amount(mg).
+    deviation_prediction method predicts a possible deviation in the heat capacity measurement as a function of the sample and the reference material amount.
 
     ### useage:\n
     from pycpep import DeviationPredictor\n
     deviation = DeviationPredictor()\n
     deviation.deviation_prediction() 
     """
-
+    self.scaler_pkl = scaler_pkl
+    self.mdl_h5 = mdl_h5
     self.Ref = Ref
     self.Sam = Sam
     assert 0 < Ref <= 1 and 0 < Sam <= 1, f"[Ref:{self.Ref}, Sam:{self.Sam}]: Please enter the correct amount of the sample and the reference material.\n {self.amount_info_msg}"
     
     if 0 < Ref <= 1 and 0 < Sam <= 1:
       # loading scaler
-      abs_path_pkl = pkg_resources.resource_stream(__name__, 'mdl/scaler.pkl')
-      scaler = joblib.load(abs_path_pkl)
-      #with open(f'{abs_path_pkl}', 'rb') as f:
-      #  scaler = pickle.load(f)
+      scaler = joblib.load(f"{self.path}/PyCpep/mdl/{self.scaler_pkl}")
       # loading ann model
-      abs_path_h5 = pkg_resources.resource_stream(__name__, 'mdl/model.hdf5')
-      model = load_model(abs_path_h5)
+      model = tf.keras.models.load_model(f"{self.path}/PyCpep/mdl/{self.mdl_h5}")
       # calculating vol-rel
       vol_rel = (Ref*Ref)/Sam
       data = [Ref, Sam, vol_rel]
@@ -141,6 +142,7 @@ class DeviationPredictor:
     else:
       print(f'{self.amount_info_msg}')
       print('-'*50)
+      return
 
   def info(self):
       """
