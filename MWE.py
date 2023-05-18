@@ -1,3 +1,4 @@
+
 # to load pkg
 from PyCpep import DeviationPredictor
 
@@ -10,7 +11,7 @@ help(deviation)
 deviation.info()
 
 # Minimum working example download for a quick start
-deviation.laod_locally()
+deviation.load_locally()
 
 # deviation prediction
 R = 1 # Reference amount
