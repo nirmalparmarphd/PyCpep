@@ -15,7 +15,7 @@ class DeviationPredictor:
   ## DeviationPredictor
   DeviationPredictor is a class from PyCpep package to predict a deviation in the heat capacity measurement (at 298~K) due to the improper amount of the sample or/and calibration standard in Tian-Calvet microDSC. PyCpep package works on the well-trained artificial neural network (ANN) model.
   
-  ## useage:
+  ## use:
   ## importing module
   from pycpep import DeviationPredictor
   deviation = DeviationPredictor(Ref, Sam)
@@ -33,7 +33,7 @@ class DeviationPredictor:
 
   def __init__(self):
     # defining variables
-    print("Imported DeviationPredictor sucessfully.")
+    print("Imported DeviationPredictor successfully.")
     self.amount_info_msg ="""
     ERROR! --> Entered value of of the reference or/and the standard amount is NOT appropriate.
 
@@ -78,7 +78,7 @@ class DeviationPredictor:
       os.mkdir(path)
       print("Directory '% s' created" % directory)
       Repo.clone_from(url_mwe, directory)
-      print(f'Downloaded the latest trained nureal network model from the PyCpep package source sucessfully at: {path}')
+      print(f'Downloaded the latest trained neural network model from the PyCpep package source successfully at: {path}')
     else:
       print("Directory '% s' already exist!" % directory)
     # cleaning garbage 
@@ -147,7 +147,7 @@ class DeviationPredictor:
       ## DeviationPredictor.info()
       Get a quick info on a module useage.
 
-      ### useage:\n
+      ### use:\n
       from pycpep import DeviationPredictor\n
       deviation = DeviationPredictor()\n
       deviation.info() 
